@@ -51,3 +51,27 @@ html_snippet = f"""
   <df-messenger
     intent="WELCOME"
     chat-title="{chat_title}"
+    agent-id="{agent_id}"
+    language-code="{language_code}"
+  >
+    <df-messenger-chat-bubble chat-title="{chat_title}"></df-messenger-chat-bubble>
+  </df-messenger>
+"""
+
+# Render with enough height so the launcher is visible
+html(html_snippet, height=640, scrolling=True)
+
+# --- Troubleshooting tips (shown in the app) ---
+with st.expander("Troubleshooting"):
+    st.markdown(
+        """
+**If the widget doesn't show up:**
+1. Add your deployment domain(s) to **Dialogflow → Agent settings → Authorized domains**. For Streamlit Cloud, add:
+   - `streamlit.app`
+   - `*.streamlit.app`
+   - your exact app subdomain (e.g., `your-app-name.streamlit.app`)
+2. Verify the **Agent ID** above is correct.
+3. Hard refresh the page (Ctrl/Cmd+Shift+R) and temporarily disable ad/script blockers.
+4. Open **DevTools → Console** and check for red errors (CORS, CSP, blocked script).
+        """
+    )
